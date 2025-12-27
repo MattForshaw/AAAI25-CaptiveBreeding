@@ -36,13 +36,13 @@ Captive breeding programs play a critical role in combating the ongoing biodiver
 🎉The code repository for "[Constraint optimisation approaches for designing group-living captive breeding programmes](TBC)" (AAAI 2025). If you use any content of this repo for your work, please cite the following bib entry:
 
 ```
-  @inproceedings{forshaw2025constraint,
-    title={Constraint Optimisation Approaches for Designing Group-Living Captive Breeding Programmes},
-    author={Forshaw, Matthew and Gray, Rachel and Ochoa, Alexander and Miller, Joshua M and Brzeski, Kristin E and Caccone, Adalgisa and Jensen, Evelyn L and others},
-    booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
-    volume={39},
-    number={27},
-    pages={27989--27997},
-    year={2025}
-  }
+@inproceedings{forshaw2025constraint,
+  title={Constraint Optimisation Approaches for Designing Group-Living Captive Breeding Programmes},
+  author={Forshaw, Matthew and Gray, Rachel and Ochoa, Alexander and Miller, Joshua M and Brzeski, Kristin E and Caccone, Adalgisa and Jensen, Evelyn L and others},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={39},
+  number={27},
+  pages={27989--27997},
+  year={2025}
+}
 ```
