@@ -1,0 +1,73 @@
+cff-version: 1.2.0
+title: CoBreeder
+abstract: >-
+  Constraint optimisation for designing group-living captive breeding programmes.
+  Allocates individuals to breeding groups using CP-SAT, subject to group size,
+  sex-composition and relatedness constraints, under a choice of objective functions.
+message: >-
+  If you use this software, please cite the conference paper in preferred-citation
+  below.
+type: software
+license: MIT
+repository-code: https://github.com/MattForshaw/AAAI25-CaptiveBreeding
+# Author list and affiliations taken from the published paper. Note the supplied BibTeX
+# abbreviated this as "and others" after Jensen, which omitted vonHoldt and reordered
+# the middle of the list; the paper's order is authoritative and is used here.
+authors:
+  - family-names: Forshaw
+    given-names: Matthew
+    affiliation: Newcastle University, and The Alan Turing Institute
+  - family-names: Gray
+    given-names: Rachel
+    affiliation: Newcastle University
+  - family-names: vonHoldt
+    given-names: Bridgett
+    affiliation: Princeton University
+  - family-names: Ochoa
+    given-names: Alexander
+    affiliation: Yale University
+  - family-names: Miller
+    given-names: Joshua M.
+    affiliation: MacEwan University
+  - family-names: Brzeski
+    given-names: Kristin E.
+    affiliation: Michigan Technological University
+  - family-names: Caccone
+    given-names: Adalgisa
+    affiliation: Yale University
+  - family-names: Jensen
+    given-names: Evelyn L.
+    affiliation: Newcastle University
+preferred-citation:
+  type: conference-paper
+  title: >-
+    Constraint Optimisation Approaches for Designing Group-Living Captive Breeding
+    Programmes
+  authors:
+    - family-names: Forshaw
+      given-names: Matthew
+    - family-names: Gray
+      given-names: Rachel
+    - family-names: vonHoldt
+      given-names: Bridgett
+    - family-names: Ochoa
+      given-names: Alexander
+    - family-names: Miller
+      given-names: Joshua M.
+    - family-names: Brzeski
+      given-names: Kristin E.
+    - family-names: Caccone
+      given-names: Adalgisa
+    - family-names: Jensen
+      given-names: Evelyn L.
+  collection-title: Proceedings of the AAAI Conference on Artificial Intelligence
+  publisher:
+    name: Association for the Advancement of Artificial Intelligence
+  volume: 39
+  issue: 27
+  start: 27989
+  end: 27997
+  year: 2025
+  # Bare DOI, as CFF 1.2.0 specifies; resolves to
+  # https://doi.org/10.1609/aaai.v39i27.35016
+  doi: 10.1609/aaai.v39i27.35016

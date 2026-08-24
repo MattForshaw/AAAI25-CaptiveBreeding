@@ -1,0 +1,13 @@
+Name,Male,Female,AssignToFirstCorral,Species,Alleles,MustAllocate
+E01 (M),1,0,-1,Alpha,100,0
+E02 (F),0,1,-1,Alpha,100,0
+E03 (M),1,0,-1,Alpha,100,0
+E04 (F),0,1,-1,Alpha,100,0
+E05 (M),1,0,-1,Alpha,100,0
+E06 (F),0,1,-1,Alpha,100,0
+E07 (M),1,0,-1,Beta,100,0
+E08 (F),0,1,-1,Beta,100,0
+E09 (M),1,0,-1,Beta,100,0
+E10 (F),0,1,-1,Beta,100,0
+E11 (M),1,0,-1,Gamma,100,0
+E12 (F),0,1,-1,Gamma,100,0

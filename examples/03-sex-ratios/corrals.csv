@@ -1,0 +1,4 @@
+ID,CompGroup,OptionalGroup,MinSize,MaxSize,MinNumMale,MinNumFemale,MaxPR,MaxNumNonComp,RatioMale,RatioFemale,RatioMode
+1,Alpha,,4,4,1,1,-1,-1,1,1,exact
+2,Alpha,,4,4,1,1,-1,-1,1,2,min-females
+3,Alpha,,4,4,1,1,-1,-1,1,1,min-males

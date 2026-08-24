@@ -1,0 +1,39 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+.RDataTmp
+
+# User-specific files
+.Ruserdata
+
+# RStudio files
+.Rproj.user/
+
+# OS metadata
+**/.DS_Store
+
+# IDE settings (carry machine-local absolute paths)
+.idea/
+.vscode/
+
+# Python build and cache artefacts
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Solver output written by experiments/run.sh. To commit a reference result set
+# deliberately, force it: git add -f results/completions.csv results/environment.txt
+results/
+
+# Quarto scratch (embed-resources inlines assets, so these appear only on partial renders)
+analysis/.quarto/
+analysis/*_files/
+
+# Working notes from the documentation tidy-up; not part of the release.
+internal-notes/

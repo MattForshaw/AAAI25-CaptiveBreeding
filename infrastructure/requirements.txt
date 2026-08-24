@@ -1,0 +1,15 @@
+# Generated from poetry.lock -- do not edit by hand. Regenerate with:
+#   poetry export --only main --without-hashes -f requirements.txt \
+#     -o infrastructure/requirements.txt
+#
+
+absl-py==2.1.0 ; python_version >= "3.10" and python_version < "3.12"
+immutabledict==4.2.1 ; python_version >= "3.10" and python_version < "3.12"
+numpy==1.24.4 ; python_version >= "3.10" and python_version < "3.12"
+ortools==9.11.4210 ; python_version >= "3.10" and python_version < "3.12"
+pandas==2.0.3 ; python_version >= "3.10" and python_version < "3.12"
+protobuf==5.26.1 ; python_version >= "3.10" and python_version < "3.12"
+python-dateutil==2.9.0.post0 ; python_version >= "3.10" and python_version < "3.12"
+pytz==2024.2 ; python_version >= "3.10" and python_version < "3.12"
+six==1.17.0 ; python_version >= "3.10" and python_version < "3.12"
+tzdata==2024.2 ; python_version >= "3.10" and python_version < "3.12"

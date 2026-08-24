@@ -1,0 +1,4 @@
+ID,CompGroup,OptionalGroup,MinSize,MaxSize,MinNumMale,MinNumFemale,MaxPR,MaxNumNonComp
+1,Alpha,Beta,4,4,1,1,-1,1
+2,Alpha;Beta,,4,4,1,1,-1,-1
+3,,,4,4,1,1,-1,-1

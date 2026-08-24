@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "cobreeder"
+version = "0.1.0"
+description = ""
+authors = ["Matthew Forshaw <matthewforshaw@gmail.com>"]
+readme = "README.md"
+license = "MIT"
+
+[tool.poetry.scripts]
+cobreeder = "cobreeder.solver:cli"
+
+[tool.poetry.dependencies]
+# Python 3.11 is the ceiling, not a preference: the pinned pandas and numpy have no
+# cp312 wheels on any platform, so 3.12 would build them from source. 3.10 is the floor
+# because it reaches end of life in October 2026.
+python = ">=3.10,<3.12"
+# Exact, not caret. The solver's search path differs between ortools releases -- same
+# seed and inputs under 9.5 vs 9.11 gave 3360 vs 877 conflicts -- so a caret would let
+# a patch upgrade silently change every trajectory and intermediate-solution figure.
+ortools = "9.11.4210"
+pandas = "2.0.3"
+# numpy arrives transitively through pandas and ortools, but preprocessing/ imports it
+# directly, so it is declared here rather than relied on as somebody else's dependency.
+# The version is the one poetry.lock already resolves.
+numpy = "1.24.4"
+
+# asv is a benchmarking harness, not needed to solve, and it pulls Windows-only
+# packages into the runtime set. It also has no asv.conf.json yet -- see R8.
+#
+# pytest is declared because tests/ is 155 tests that the README reports on; without it
+# `poetry install` gave no way to run them. The suite is plain unittest, so
+# `python -m unittest discover -s tests` works with no dev dependencies at all.
+[tool.poetry.group.dev.dependencies]
+asv = "^0.6.4"
+pytest = "^7.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
