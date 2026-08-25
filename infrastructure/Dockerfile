@@ -24,16 +24,7 @@ COPY cobreeder/ ./cobreeder/
 COPY data/ ./data/
 COPY examples/ ./examples/
 COPY experiments/ ./experiments/
-COPY preprocessing/ ./preprocessing/
-COPY tests/ ./tests/
 COPY README.md LICENSE ./
-
-# preprocessing/ and examples/ are here because the test suite needs them:
-# tests/test_scaling.py imports preprocessing/scale_relatedness.py and
-# tests/test_examples.py runs every scenario under examples/. Without them the suite
-# cannot be collected in the image the README calls canonical. preprocessing/ is also
-# what `scale_relatedness.py verify` runs from. analysis/ is deliberately left out --
-# it needs R and Quarto, which this image does not carry.
 
 # Records what the image actually resolved, so a run can be traced to an environment
 # even if the image is rebuilt later.
