@@ -2,8 +2,8 @@
 #
 # Build and run from the repository root:
 #   docker build -f infrastructure/Dockerfile -t cobreeder .
-#   docker run --rm cobreeder run data/wolves/individuals.csv \
-#       data/wolves/pr-scaled.csv data/wolves/corrals-a.csv \
+#   docker run --rm cobreeder run data/dir/individuals.csv \
+#       data/dir/pr-scaled.csv data/dir/corrals-a.csv \
 #       ALL_PAIRS_PR_MIN_SQUARED demo 0 0 10
 FROM python:3.11-slim
 
