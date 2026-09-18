@@ -891,19 +891,19 @@ def build_model(data, args):
 
 
 
+    corral_of = {}
+    for g in all_individuals:
+        domain = cp_model.Domain.FromIntervals(
+            [[0, num_corrals - 1], [num_corrals + g, num_corrals + g]])
+        corral_of[g] = model.NewIntVarFromDomain(
+            domain, "corral holding individual %i" % g)
+
     colocated = {}
     for g1 in range(num_individuals - 1):
         for g2 in range(g1 + 1, num_individuals):
-            colocated[(g1, g2)] = model.NewBoolVar(
-                "individual %i colocated with individual %i" % (g1, g2)
-            )
-
-    same_corral = {}
-    for g1 in range(num_individuals - 1):
-        for g2 in range(g1 + 1, num_individuals):
-            for t in all_corrals:
-                same_corral[(g1, g2, t)] = model.NewBoolVar(
-                    "individuals %i and %i are both placed in corral %i" % (g1, g2, t)
+            if connections[g1][g2] > 0:
+                colocated[(g1, g2)] = model.NewBoolVar(
+                    "individual %i colocated with individual %i" % (g1, g2)
                 )
 
     opposing_sex = {}
@@ -1045,36 +1045,30 @@ def build_model(data, args):
                      "species", t, int(cap))
             model.Add(optional_here <= int(cap))
 
-        # Add 'maximum pairwise relatedness' constraint for corrals whose MaxPR value != -1.
-        if corral_defs['MaxPR'][t] != -1:
-            model.Add(
-                sum(
-                    connections[g1][g2] * same_corral[(g1, g2, t)]
-                    for g1 in range(num_individuals - 1)
-                    for g2 in range(g1 + 1, num_individuals)
-                    if connections[g1][g2] > corral_defs['MaxPR'][t]
-                ) < 1
-            )
+        max_pr = corral_defs['MaxPR'][t]
+        if max_pr != -1:
+            for g1 in range(num_individuals - 1):
+                row = connections[g1]
+                for g2 in range(g1 + 1, num_individuals):
+                    if row[g2] > max_pr:
+                        model.AddBoolOr([placement[(t, g1)].Not(),
+                                         placement[(t, g2)].Not()])
 
-    # Link colocated with placement decisions
-    for g1 in range(num_individuals - 1):
-        for g2 in range(g1 + 1, num_individuals):
-            for t in all_corrals:
-                # Link same_corral and placement.
-                model.AddBoolOr(
-                    [
-                        placement[(t, g1)].Not(),
-                        placement[(t, g2)].Not(),
-                        same_corral[(g1, g2, t)],
-                    ]
-                )
-                model.AddImplication(same_corral[(g1, g2, t)], placement[(t, g1)])
-                model.AddImplication(same_corral[(g1, g2, t)], placement[(t, g2)])
+    # Channel placement into corral_of. The
+    # individual-centric constraints above already cap sum(placement) at 1 per individual,
+    # so when it is placed the sum picks out its corral index, and when it is not the
+    # bracket is 1 and the sentinel applies. One linear equation per individual.
+    for g in all_individuals:
+        allocated = sum(placement[(t, g)] for t in all_corrals)
+        model.Add(
+            corral_of[g] == sum(t * placement[(t, g)] for t in all_corrals)
+                            + (num_corrals + g) * (1 - allocated)
+        )
 
-            # Link colocated and same_corral.
-            model.Add(
-                sum(same_corral[(g1, g2, t)] for t in all_corrals) == colocated[(g1, g2)]
-            )
+    # Link colocated with placement decisions, through corral_of.
+    for (g1, g2), indicator in colocated.items():
+        model.Add(corral_of[g1] == corral_of[g2]).OnlyEnforceIf(indicator)
+        model.Add(corral_of[g1] != corral_of[g2]).OnlyEnforceIf(indicator.Not())
 
     # Individuals carrying a pre-assigned corral are pinned to it. This is the only
     # place that happens; a second, identical copy inside the individual loop above
@@ -1166,7 +1160,7 @@ def build_model(data, args):
         model=model,
         placement=placement,
         colocated=colocated,
-        same_corral=same_corral,
+        corral_of=corral_of,
         names=names,
         males=males,
         females=females,
